@@ -80,6 +80,7 @@ export default function Header() {
 
   const [mobileMenuOpen, setMobilMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   const navbar = (links: Array<TLink>) => {
     return (
       <div className="hidden lg:flex lg:gap-x-12">
@@ -89,7 +90,7 @@ export default function Header() {
               <button
                 type="button"
                 className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
-                aria-expanded="false"
+                aria-expanded={menuOpen}
                 onClick={() => setMenuOpen((pre) => !pre)}
               >
                 {link.title}
@@ -157,7 +158,9 @@ export default function Header() {
         ></div>
         <div
           className={`fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 ${
-            mobileMenuOpen ? `block` : `hidden`
+            mobileMenuOpen
+              ? `block animate-side`
+              : `pointer-events-none opacity-0 animate-side-out`
           }`}
         >
           <div className="flex items-center justify-between">
@@ -193,12 +196,16 @@ export default function Header() {
                         type="button"
                         className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                         aria-controls="disclosure-1"
-                        aria-expanded="false"
+                        aria-expanded={menuOpen}
+                        onClick={() => setMenuOpen((pre) => !pre)}
                       >
                         {link.title}
                         <MdKeyboardArrowDown size={20} />
                       </button>
-                      <div className="mt-2 space-y-2" id="disclosure-1">
+                      <div
+                        className={`mt-2 space-y-2 ${menuOpen || "hidden"}`}
+                        id="disclosure-1"
+                      >
                         {link.subLink.map((subLink) => (
                           <Link
                             key={`/${link.id}/${subLink.id}`}
