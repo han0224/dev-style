@@ -9,6 +9,7 @@ import { ImSortNumbericDesc } from "react-icons/im";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { useState } from "react";
+import { commonText, navBar, screenReaders } from "@/constants/text";
 
 type TLink = {
   id: number;
@@ -34,33 +35,33 @@ export default function Header() {
     {
       id: 0,
       link: "input",
-      title: "Input",
+      title: navBar.input,
       subLink: [
         {
           id: 0,
           link: "checkbox",
-          title: "checkbox",
+          title: navBar.checkbox,
           content: "Get a beautiful checkbox style",
           icon: "checkbox",
         },
         {
           id: 1,
           link: "text",
-          title: "text",
+          title: navBar.text,
           content: "text, password",
           icon: "text",
         },
         {
           id: 2,
           link: "radio-button",
-          title: "Radio button",
+          title: navBar.radio,
           content: "Get a beautiful Radio button style",
           icon: "radio",
         },
         {
           id: 3,
           link: "number",
-          title: "number button",
+          title: navBar.number,
           content: "Get a beautiful number style",
           icon: "number",
         },
@@ -69,12 +70,12 @@ export default function Header() {
     {
       id: 1,
       link: "button",
-      title: "button",
+      title: navBar.button,
     },
     {
       id: 2,
       link: "write",
-      title: "write",
+      title: navBar.write,
     },
   ];
 
@@ -165,11 +166,11 @@ export default function Header() {
         >
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">DEV Style</span>
+              <span className="sr-only">{commonText.projectName}</span>
               <div className={"relative w-20 h-20"}>
                 <Image
                   src={"/logo.png"}
-                  alt="dev style"
+                  alt={commonText.projectName}
                   fill
                   priority
                   style={{ objectFit: "cover" }}
@@ -182,7 +183,7 @@ export default function Header() {
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobilMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">{screenReaders.closeMenu}</span>
               <IoMdClose size={20} />
             </button>
           </div>
@@ -233,7 +234,7 @@ export default function Header() {
                   href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
+                  {commonText.login}
                 </Link>
               </div>
             </div>
@@ -251,11 +252,11 @@ export default function Header() {
       >
         <div className="flex lg:flex-1 ">
           <Link href="/">
-            <span className="sr-only">DEV Style</span>
+            <span className="sr-only">{commonText.projectName}</span>
             <div className={"relative w-20 h-20"}>
               <Image
                 src={"/logo.png"}
-                alt="dev style"
+                alt={commonText.projectName}
                 fill
                 priority
                 sizes="(max-width: 732px) 90vw, (max-width: 992px) 45vw, 320px"
@@ -270,7 +271,7 @@ export default function Header() {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobilMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">{screenReaders.openMainMenu}</span>
             <i>
               <GiHamburgerMenu size={20} />
             </i>
@@ -282,7 +283,7 @@ export default function Header() {
             href="/login"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Log in <span aria-hidden="true">&rarr;</span>
+            {commonText.login} <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>
