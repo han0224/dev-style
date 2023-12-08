@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const colors = require("tailwindcss/colors");
 
 const config: Config = {
   content: [
@@ -7,11 +8,8 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    textColor: {
-      white: "#FFF",
-      black: "#000",
-    },
     colors: {
+      ...colors,
       primary: {
         "50": "#f0fdfa",
         "100": "#ccfbf1",
