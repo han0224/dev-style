@@ -21,7 +21,3 @@ html,
 body {
   height: 100%;
 }
-
-body {
-  color: rgb(var(--font-color-rgb));
-}
