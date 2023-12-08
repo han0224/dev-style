@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <main className="flex min-h-screen flex-col items-center justify-between px-24">
+        <main className="flex flex-col items-center max-w-7xl min-h-[calc(100%-5rem)] mx-auto lg:px-8">
           {children}
         </main>
       </body>
