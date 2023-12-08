@@ -1,15 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { IoIosCheckboxOutline, IoMdClose } from "react-icons/io";
-import { LuTextCursorInput } from "react-icons/lu";
-import { MdOutlineRadioButtonChecked } from "react-icons/md";
-import { ImSortNumbericDesc } from "react-icons/im";
-import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { useState } from "react";
 import { commonText, navBar, screenReaders } from "@/constants/text";
+import { icons } from "@/assets/icons";
+import { iconName } from "@/types/type";
 
 type TLink = {
   id: number;
@@ -17,24 +13,14 @@ type TLink = {
   title: string;
   content?: string;
   subLink?: Array<TLink>;
-  icon?: string;
-};
-
-const icon = (name: string, size = 20) => {
-  const icons: Record<string, JSX.Element> = {
-    checkbox: <IoIosCheckboxOutline size={size} />,
-    text: <LuTextCursorInput size={size} />,
-    radio: <MdOutlineRadioButtonChecked size={size} />,
-    number: <ImSortNumbericDesc size={size} />,
-  };
-  return icons[name];
+  icon?: iconName;
 };
 
 export default function Header() {
   const links: Array<TLink> = [
     {
       id: 0,
-      link: "input",
+      link: "/style/input/",
       title: navBar.input,
       subLink: [
         {
@@ -69,12 +55,12 @@ export default function Header() {
     },
     {
       id: 1,
-      link: "button",
+      link: "/style/button",
       title: navBar.button,
     },
     {
       id: 2,
-      link: "write",
+      link: "/write",
       title: navBar.write,
     },
   ];
@@ -82,6 +68,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobilMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // TODO: 이후 분리
   const navbar = (links: Array<TLink>) => {
     return (
       <div className="hidden lg:flex lg:gap-x-12">
@@ -96,7 +83,8 @@ export default function Header() {
               >
                 {link.title}
                 <i className="text-gray-400">
-                  <MdKeyboardArrowDown size={20} />
+                  {icons("arrowDown")}
+                  {/* <MdKeyboardArrowDown size={20} /> */}
                 </i>
               </button>
 
@@ -116,13 +104,14 @@ export default function Header() {
                     <div
                       key={`${link.id}-${v.id}`}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      onClick={() => setMenuOpen(false)}
                     >
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        {icon(v.icon || "")}
+                        {icons(v.icon || "")}
                       </div>
                       <div className="flex-auto">
                         <Link
-                          href={`/${link.link}/${v.link}`}
+                          href={`${link.link}/${v.link}`}
                           className="block font-semibold text-gray-900"
                         >
                           {v.title}
@@ -184,7 +173,7 @@ export default function Header() {
               onClick={() => setMobilMenuOpen(false)}
             >
               <span className="sr-only">{screenReaders.closeMenu}</span>
-              <IoMdClose size={20} />
+              {icons("close")}
             </button>
           </div>
           <div className="mt-6 flow-root">
@@ -201,7 +190,7 @@ export default function Header() {
                         onClick={() => setMenuOpen((pre) => !pre)}
                       >
                         {link.title}
-                        <MdKeyboardArrowDown size={20} />
+                        {icons("arrowDown")}
                       </button>
                       <div
                         className={`mt-2 space-y-2 ${menuOpen || "hidden"}`}
@@ -209,9 +198,10 @@ export default function Header() {
                       >
                         {link.subLink.map((subLink) => (
                           <Link
-                            key={`/${link.id}/${subLink.id}`}
-                            href={`/${link.link}/${subLink.link}`}
+                            key={`${link.id}/${subLink.id}`}
+                            href={`${link.link}/${subLink.link}`}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            onClick={() => setMobilMenuOpen(false)}
                           >
                             {subLink.title}
                           </Link>
@@ -223,6 +213,7 @@ export default function Header() {
                       key={link.id}
                       href={link.link}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      onClick={() => setMobilMenuOpen(false)}
                     >
                       {link.title}
                     </Link>
@@ -233,6 +224,7 @@ export default function Header() {
                 <Link
                   href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobilMenuOpen(false)}
                 >
                   {commonText.login}
                 </Link>
@@ -273,7 +265,8 @@ export default function Header() {
           >
             <span className="sr-only">{screenReaders.openMainMenu}</span>
             <i>
-              <GiHamburgerMenu size={20} />
+              {icons("hamburger")}
+              {/* <GiHamburgerMenu size={20} /> */}
             </i>
           </button>
         </div>
