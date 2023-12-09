@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import { Textarea } from "@/components/write";
+import { Button } from "@/components/common";
 
 export default function Write() {
   const previewRef = useRef<HTMLIFrameElement>(null);
@@ -18,33 +20,39 @@ export default function Write() {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-red-300">
-      <div className="flex justify-between gap-2">
-        <div className="flex-1 bg-slate-400">
-          <label htmlFor="html">html</label>
-          <textarea
-            ref={htmlRef}
-            name="html"
-            id="html"
-            cols={30}
-            rows={10}
-            onKeyUp={getPreview}
-          ></textarea>
+    <div className="flex flex-col h-full w-full mt-16">
+      <div className="flex gap-2">
+        <div className="flex-1 flex flex-col justify-between gap-2">
+          <div className="flex-1">
+            <Textarea
+              keyupEvent={getPreview}
+              id="html"
+              name="html"
+              label="html"
+              ref={htmlRef}
+              icon="html"
+            />
+          </div>
+          <div className="flex-1">
+            <Textarea
+              keyupEvent={getPreview}
+              id="css"
+              name="css"
+              label="css"
+              ref={cssRef}
+              icon="css"
+            />
+          </div>
         </div>
-        <div className="flex-1 bg-slate-400">
-          <label htmlFor="html">css</label>
-          <textarea
-            ref={cssRef}
-            name="css"
-            id="css"
-            cols={30}
-            rows={10}
-            onKeyUp={getPreview}
-          ></textarea>
+        <div className="flex-1">
+          <iframe
+            className="p-2.5 w-full h-full text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500  resize-none"
+            ref={previewRef}
+          ></iframe>
         </div>
       </div>
-      <div>
-        <iframe ref={previewRef}></iframe>
+      <div className="mt-2">
+        <Button text="save" />
       </div>
     </div>
   );
