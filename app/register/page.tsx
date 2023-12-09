@@ -5,15 +5,15 @@ import Form from "@/components/login/Form";
 import Input from "@/components/login/Input";
 import { TForm } from "@/types/type";
 
-export default function Login() {
+export default function register() {
   const formProps: TForm = {
     loginPath: "/",
     method: "POST",
-    submitText: login.login,
-    link: "/register",
-    linkText: login.register,
-    linkDesc: login.makeAccount,
-    formType: "login",
+    submitText: login.register,
+    link: "/login",
+    linkText: login.login,
+    linkDesc: login.haveAccount,
+    formType: "register",
   };
 
   return (
@@ -38,7 +38,7 @@ export default function Login() {
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              {login.login}
+              {login.register}
             </h1>
             <Form {...formProps}>
               <Input
@@ -54,6 +54,15 @@ export default function Login() {
                 id="password"
                 type="password"
                 name="password"
+                placeholder="••••••••"
+                required
+              />
+              {/* TODO: 두 비번이 틀렸을 경우 해야함 */}
+              <Input
+                label="confirm password"
+                id="confirm password"
+                type="password"
+                name="confirm password"
                 placeholder="••••••••"
                 required
               />

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { commonText, navBar, screenReaders } from "@/constants/text";
 import { icons } from "@/assets/icons";
-import { iconName } from "@/types/type";
+// import { iconName } from "@/types/type";
+import { iconName } from "@/types/type.d";
 
 type TLink = {
   id: number;
