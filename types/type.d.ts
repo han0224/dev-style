@@ -6,7 +6,9 @@ export type iconName =
   | "number"
   | "arrowDown"
   | "hamburger"
-  | "close";
+  | "close"
+  | "html"
+  | "css";
 
 export type TForm = {
   loginPath: string;
