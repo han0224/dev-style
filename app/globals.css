@@ -21,3 +21,9 @@ html,
 body {
   height: 100%;
 }
+
+/* codemirror */
+
+.cm-theme {
+  width: 100%;
+}
