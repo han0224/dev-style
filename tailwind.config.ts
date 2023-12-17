@@ -23,6 +23,7 @@ const config: Config = {
         "900": "#134e4a",
         "950": "#042f2e",
       },
+      "editor-bg": "#272C35",
     },
     extend: {
       backgroundImage: {
@@ -89,6 +90,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
 export default config;
